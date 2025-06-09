@@ -12,9 +12,21 @@ RUN npm install -g @playwright/mcp@0.0.7
 # Although the base image should include them, explicitly install in case MCP cannot find them
 RUN npx playwright install chrome && npx playwright install-deps chrome
 
-# Copy the entrypoint script
+# Create non-root user for security with proper home directory
+RUN addgroup --system playwright && adduser --system --ingroup playwright --home /home/playwright playwright
+
+# Copy the entrypoint script and set permissions
 COPY entrypoint.sh /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
+
+# Change ownership of /app to playwright user
+RUN chown -R playwright:playwright /app
+
+# Set up npm directories for the playwright user
+RUN mkdir -p /home/playwright/.npm && chown -R playwright:playwright /home/playwright
+
+# Switch to non-root user
+USER playwright
 
 # Set the entrypoint
 ENTRYPOINT ["/app/entrypoint.sh"]

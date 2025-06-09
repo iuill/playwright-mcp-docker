@@ -14,7 +14,7 @@ services:
       # Read from .env file (with defaults)
       - DISPLAY=${DISPLAY:-:0}
       - WAYLAND_DISPLAY=${WAYLAND_DISPLAY:-wayland-0}
-      - XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-/run/user/0} # Default assumes root (ID 0)
+      - XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-/run/user/1000} # Default for non-root user
     ports:
       # Map host port (from .env) to the same internal port
       - "${MCP_HOST_PORT:-8931}:${MCP_HOST_PORT:-8931}"
