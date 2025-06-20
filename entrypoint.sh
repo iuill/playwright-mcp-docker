@@ -26,4 +26,4 @@ echo "Starting @playwright/mcp with args: $MCP_ARGS $@"
 echo "Internal MCP port (if using SSE): $INTERNAL_PORT"
 
 # Execute @playwright/mcp using npx, passing arguments ($@)
-exec npx @playwright/mcp@0.0.7 $MCP_ARGS "$@"
+exec npx @playwright/mcp $MCP_ARGS "$@"
