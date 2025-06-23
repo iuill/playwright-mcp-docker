@@ -17,13 +17,23 @@ if [ -n "$MCP_PORT" ]; then
   MCP_ARGS="$MCP_ARGS --port $INTERNAL_PORT"
 fi
 
-# Add other options if needed (e.g., --vision)
-# if [ "$VISION_MODE" = "true" ]; then
-#   MCP_ARGS="$MCP_ARGS --vision"
-# fi
+Add other options if needed (e.g., --vision)
+if [ "$VISION_MODE" = "true" ]; then
+  MCP_ARGS="$MCP_ARGS --vision"
+fi
+
+# Add --isolated if ISOLATED environment variable is true
+if [ "$ISOLATED" = "true" ]; then
+  MCP_ARGS="$MCP_ARGS --isolated"
+fi
+
+# Add --no-sandbox if NOSANDBOX environment variable is true
+if [ "$NOSANDBOX" = "true" ]; then
+  MCP_ARGS="$MCP_ARGS --no-sandbox"
+fi
 
 echo "Starting @playwright/mcp with args: $MCP_ARGS $@"
 echo "Internal MCP port (if using SSE): $INTERNAL_PORT"
 
 # Execute @playwright/mcp using npx, passing arguments ($@)
-exec npx @playwright/mcp@0.0.7 $MCP_ARGS "$@"
+exec npx @playwright/mcp $MCP_ARGS "$@"

@@ -1,12 +1,12 @@
 # Specify the base image (check for the latest tag and specify if preferred)
-FROM mcr.microsoft.com/playwright:v1.51.1-noble
+FROM mcr.microsoft.com/playwright:v1.53.1-noble
 
 # Set working directory (optional)
 WORKDIR /app
 
 # Install @playwright/mcp globally
 # RUN npm cache clean --force # Try this if you encounter caching issues
-RUN npm install -g @playwright/mcp@0.0.7
+RUN npm install -g @playwright/mcp
 
 # Install Chrome browser and dependencies required by Playwright
 # Although the base image should include them, explicitly install in case MCP cannot find them
