@@ -1,3 +1,12 @@
+> [!IMPORTANT]
+> This repository is no longer maintained.
+>
+> Please refer to the official Playwright MCP repository for its Docker image
+> and setup instructions. Playwright CLI is also available as an alternative,
+> particularly for coding-agent workflows:
+>
+> https://github.com/microsoft/playwright-mcp
+
 # Playwright MCP Docker Environment
 
 [日本語版はこちら (Japanese version here)](README_ja.md)
